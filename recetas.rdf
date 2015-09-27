@@ -1,0 +1,1799 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Ontology rdf:about="http://www.recetario.com/">
+        <rdfs:comment rdf:datatype="&xsd;string">Ontología de recetas de comida</rdfs:comment>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.recetario.com/de_origen -->
+
+    <ObjectProperty rdf:about="http://www.recetario.com/de_origen">
+        <rdfs:domain rdf:resource="http://www.recetario.com/Receta"/>
+        <rdfs:range rdf:resource="http://www.recetario.com/TipoReceta"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.recetario.com/es_ingrediente_de -->
+
+    <ObjectProperty rdf:about="http://www.recetario.com/es_ingrediente_de">
+        <rdfs:domain rdf:resource="http://www.recetario.com/Ingrediente"/>
+        <rdfs:range rdf:resource="http://www.recetario.com/Receta"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.recetario.com/nivelCalorias -->
+
+    <ObjectProperty rdf:about="http://www.recetario.com/nivelCalorias">
+        <rdfs:range rdf:resource="http://www.recetario.com/NiveldeCalorias"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.recetario.com/nivelSabor -->
+
+    <ObjectProperty rdf:about="http://www.recetario.com/nivelSabor"/>
+    
+
+
+    <!-- http://www.recetario.com/tiene_ingrediente -->
+
+    <ObjectProperty rdf:about="http://www.recetario.com/tiene_ingrediente">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://www.recetario.com/Ingrediente"/>
+        <rdfs:domain rdf:resource="http://www.recetario.com/Receta"/>
+        <inverseOf rdf:resource="http://www.recetario.com/es_ingrediente_de"/>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.recetario.com/Aceite -->
+
+    <Class rdf:about="http://www.recetario.com/Aceite">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/AceitedeGirasol -->
+
+    <Class rdf:about="http://www.recetario.com/AceitedeGirasol">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Aceite"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/AceitedeMaiz -->
+
+    <Class rdf:about="http://www.recetario.com/AceitedeMaiz">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Aceite"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/AceitedeOliva -->
+
+    <Class rdf:about="http://www.recetario.com/AceitedeOliva">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Aceite"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/AceitedeSoya -->
+
+    <Class rdf:about="http://www.recetario.com/AceitedeSoya">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Aceite"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Agua -->
+
+    <Class rdf:about="http://www.recetario.com/Agua">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Liquido"/>
+        <disjointWith rdf:resource="http://www.recetario.com/Vino"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Ajinomoto -->
+
+    <Class rdf:about="http://www.recetario.com/Ajinomoto">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Condimento"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Ajo -->
+
+    <Class rdf:about="http://www.recetario.com/Ajo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Albahaca -->
+
+    <Class rdf:about="http://www.recetario.com/Albahaca">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Alberjita -->
+
+    <Class rdf:about="http://www.recetario.com/Alberjita">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Alfredo -->
+
+    <Class rdf:about="http://www.recetario.com/Alfredo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Tallarines"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/de_origen"/>
+                <allValuesFrom rdf:resource="http://www.recetario.com/Italiana"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/SalsaBlanca"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Tallarin"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/SalsaBlanca"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Almendra -->
+
+    <Class rdf:about="http://www.recetario.com/Almendra">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/FrutosSecos"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/AltasCalorias -->
+
+    <Class rdf:about="http://www.recetario.com/AltasCalorias">
+        <equivalentClass>
+            <Class>
+                <intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.recetario.com/Receta"/>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                        <someValuesFrom>
+                            <Class>
+                                <intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.recetario.com/Ingrediente"/>
+                                    <Restriction>
+                                        <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                                        <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+                                    </Restriction>
+                                </intersectionOf>
+                            </Class>
+                        </someValuesFrom>
+                    </Restriction>
+                </intersectionOf>
+            </Class>
+        </equivalentClass>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Alto -->
+
+    <Class rdf:about="http://www.recetario.com/Alto">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/NiveldeCalorias"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Amargo -->
+
+    <Class rdf:about="http://www.recetario.com/Amargo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Sabor"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Arroz -->
+
+    <Class rdf:about="http://www.recetario.com/Arroz">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Cereal"/>
+        <disjointWith rdf:resource="http://www.recetario.com/Avena"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Avena -->
+
+    <Class rdf:about="http://www.recetario.com/Avena">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Cereal"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Bajo -->
+
+    <Class rdf:about="http://www.recetario.com/Bajo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/NiveldeCalorias"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Bolognesa -->
+
+    <Class rdf:about="http://www.recetario.com/Bolognesa">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Tallarines"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/SalsaBolognesa"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Tallarin"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/SalsaBolognesa"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/de_origen"/>
+                <allValuesFrom rdf:resource="http://www.recetario.com/Italiana"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Camote -->
+
+    <Class rdf:about="http://www.recetario.com/Camote">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Tuberculo"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Carne -->
+
+    <Class rdf:about="http://www.recetario.com/Carne">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Cebolla -->
+
+    <Class rdf:about="http://www.recetario.com/Cebolla">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Cereal -->
+
+    <Class rdf:about="http://www.recetario.com/Cereal">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Comino -->
+
+    <Class rdf:about="http://www.recetario.com/Comino">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Condimento"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Condimento -->
+
+    <Class rdf:about="http://www.recetario.com/Condimento">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Dulce -->
+
+    <Class rdf:about="http://www.recetario.com/Dulce">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Sabor"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Embutido -->
+
+    <Class rdf:about="http://www.recetario.com/Embutido">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Española -->
+
+    <Class rdf:about="http://www.recetario.com/Española">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/TipoReceta"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/FrutosSecos -->
+
+    <Class rdf:about="http://www.recetario.com/FrutosSecos">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Girasol -->
+
+    <Class rdf:about="http://www.recetario.com/Girasol">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Harina -->
+
+    <Class rdf:about="http://www.recetario.com/Harina">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/HarinadeMaiz -->
+
+    <Class rdf:about="http://www.recetario.com/HarinadeMaiz">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Harina"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="http://www.recetario.com/HarinadeSoya"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/HarinadeSoya -->
+
+    <Class rdf:about="http://www.recetario.com/HarinadeSoya">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Harina"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Huevo -->
+
+    <Class rdf:about="http://www.recetario.com/Huevo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelSabor"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Amargo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/HuevodeCodorniz -->
+
+    <Class rdf:about="http://www.recetario.com/HuevodeCodorniz">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Huevo"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="http://www.recetario.com/HuevodeGallina"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/HuevodeGallina -->
+
+    <Class rdf:about="http://www.recetario.com/HuevodeGallina">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Huevo"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Ingrediente -->
+
+    <Class rdf:about="http://www.recetario.com/Ingrediente">
+        <rdfs:comment rdf:datatype="&xsd;string">Insumo de una receta</rdfs:comment>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Insípido -->
+
+    <Class rdf:about="http://www.recetario.com/Insípido">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Sabor"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Italiana -->
+
+    <Class rdf:about="http://www.recetario.com/Italiana">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/TipoReceta"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Jamon -->
+
+    <Class rdf:about="http://www.recetario.com/Jamon">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Embutido"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="http://www.recetario.com/Jamonada"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Jamonada -->
+
+    <Class rdf:about="http://www.recetario.com/Jamonada">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Embutido"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Japonesa -->
+
+    <Class rdf:about="http://www.recetario.com/Japonesa">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/TipoReceta"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Lasagna -->
+
+    <Class rdf:about="http://www.recetario.com/Lasagna">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Pasta"/>
+        <disjointWith rdf:resource="http://www.recetario.com/Tallarin"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Leche -->
+
+    <Class rdf:about="http://www.recetario.com/Leche">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/LechedeSoya -->
+
+    <Class rdf:about="http://www.recetario.com/LechedeSoya">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Leche"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="http://www.recetario.com/LechedeVaca"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/LechedeVaca -->
+
+    <Class rdf:about="http://www.recetario.com/LechedeVaca">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Leche"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Lechuga -->
+
+    <Class rdf:about="http://www.recetario.com/Lechuga">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Limon -->
+
+    <Class rdf:about="http://www.recetario.com/Limon">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Liquido -->
+
+    <Class rdf:about="http://www.recetario.com/Liquido">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/LomoSaltado -->
+
+    <Class rdf:about="http://www.recetario.com/LomoSaltado">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Receta"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/de_origen"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Peruana"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/Cebolla"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Papa"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Res"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Tomate"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="http://www.recetario.com/MakiSushi"/>
+        <disjointWith rdf:resource="http://www.recetario.com/Tallarines"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Maiz -->
+
+    <Class rdf:about="http://www.recetario.com/Maiz">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/MakiSushi -->
+
+    <Class rdf:about="http://www.recetario.com/MakiSushi">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Receta"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/de_origen"/>
+                <allValuesFrom rdf:resource="http://www.recetario.com/Japonesa"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/MakiSushiCaliforniaRoll -->
+
+    <Class rdf:about="http://www.recetario.com/MakiSushiCaliforniaRoll">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/MakiSushi"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Pescado"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/QuesoCrema"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Nori"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Zanahoria"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Arroz"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/Arroz"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Nori"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Pescado"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/QuesoCrema"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Zanahoria"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/MakiSushiPalta -->
+
+    <Class rdf:about="http://www.recetario.com/MakiSushiPalta">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/MakiSushi"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Nori"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/Arroz"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Nori"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Palta"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Zanahoria"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Palta"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Zanahoria"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Arroz"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Mani -->
+
+    <Class rdf:about="http://www.recetario.com/Mani">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/FrutosSecos"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Mantequilla -->
+
+    <Class rdf:about="http://www.recetario.com/Mantequilla">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/MantequilladeLecheVaca -->
+
+    <Class rdf:about="http://www.recetario.com/MantequilladeLecheVaca">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Mantequilla"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="http://www.recetario.com/MantequilladeManí"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/MantequilladeManí -->
+
+    <Class rdf:about="http://www.recetario.com/MantequilladeManí">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Mantequilla"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Alto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Marisco -->
+
+    <Class rdf:about="http://www.recetario.com/Marisco">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Carne"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Medio -->
+
+    <Class rdf:about="http://www.recetario.com/Medio">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/NiveldeCalorias"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Mozzarella -->
+
+    <Class rdf:about="http://www.recetario.com/Mozzarella">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Queso"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Nivel -->
+
+    <Class rdf:about="http://www.recetario.com/Nivel"/>
+    
+
+
+    <!-- http://www.recetario.com/NiveldeCalorias -->
+
+    <Class rdf:about="http://www.recetario.com/NiveldeCalorias">
+        <equivalentClass>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.recetario.com/Alto"/>
+                    <rdf:Description rdf:about="http://www.recetario.com/Bajo"/>
+                    <rdf:Description rdf:about="http://www.recetario.com/Medio"/>
+                </unionOf>
+            </Class>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Nivel"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/NiveldeSabor -->
+
+    <Class rdf:about="http://www.recetario.com/NiveldeSabor">
+        <equivalentClass>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.recetario.com/Alto"/>
+                    <rdf:Description rdf:about="http://www.recetario.com/Bajo"/>
+                    <rdf:Description rdf:about="http://www.recetario.com/Medio"/>
+                </unionOf>
+            </Class>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Nivel"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Nori -->
+
+    <Class rdf:about="http://www.recetario.com/Nori">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Nuez -->
+
+    <Class rdf:about="http://www.recetario.com/Nuez">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/FrutosSecos"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/NuezMoscada -->
+
+    <Class rdf:about="http://www.recetario.com/NuezMoscada">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Condimento"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Olivo -->
+
+    <Class rdf:about="http://www.recetario.com/Olivo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Palta -->
+
+    <Class rdf:about="http://www.recetario.com/Palta">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Papa -->
+
+    <Class rdf:about="http://www.recetario.com/Papa">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Tuberculo"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Parmesano -->
+
+    <Class rdf:about="http://www.recetario.com/Parmesano">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Queso"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Pasas -->
+
+    <Class rdf:about="http://www.recetario.com/Pasas">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/FrutosSecos"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Pasta -->
+
+    <Class rdf:about="http://www.recetario.com/Pasta">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Peruana -->
+
+    <Class rdf:about="http://www.recetario.com/Peruana">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/TipoReceta"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Pescado -->
+
+    <Class rdf:about="http://www.recetario.com/Pescado">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Carne"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Pesto -->
+
+    <Class rdf:about="http://www.recetario.com/Pesto">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Tallarines"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/SalsaPesto"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/SalsaPesto"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Tallarin"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/de_origen"/>
+                <allValuesFrom rdf:resource="http://www.recetario.com/Italiana"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Picante -->
+
+    <Class rdf:about="http://www.recetario.com/Picante">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Sabor"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Pimienta -->
+
+    <Class rdf:about="http://www.recetario.com/Pimienta">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Condimento"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Pituca -->
+
+    <Class rdf:about="http://www.recetario.com/Pituca">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Tuberculo"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Pollo -->
+
+    <Class rdf:about="http://www.recetario.com/Pollo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Carne"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <disjointWith rdf:resource="http://www.recetario.com/Res"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Queso -->
+
+    <Class rdf:about="http://www.recetario.com/Queso">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/QuesoCrema -->
+
+    <Class rdf:about="http://www.recetario.com/QuesoCrema">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Queso"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Receta -->
+
+    <Class rdf:about="http://www.recetario.com/Receta">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Ingrediente"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Es el plato que puede ser preparado con un conjunto de ingredientes</rdfs:comment>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Res -->
+
+    <Class rdf:about="http://www.recetario.com/Res">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Carne"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Sabor -->
+
+    <Class rdf:about="http://www.recetario.com/Sabor">
+        <rdfs:comment rdf:datatype="&xsd;string">El sabor que tiene un tipo de ingrediente.  Los ingredientes tienen por lo menos 1 sabor.</rdfs:comment>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Sal -->
+
+    <Class rdf:about="http://www.recetario.com/Sal">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Condimento"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Salado -->
+
+    <Class rdf:about="http://www.recetario.com/Salado">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Sabor"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Salsa -->
+
+    <Class rdf:about="http://www.recetario.com/Salsa">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Receta"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/SalsaBlanca -->
+
+    <Class rdf:about="http://www.recetario.com/SalsaBlanca">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Salsa"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Pimienta"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Parmesano"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/MantequilladeLecheVaca"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Jamon"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Sal"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/LechedeVaca"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/HarinadeMaiz"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Jamon"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/LechedeVaca"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/MantequilladeLecheVaca"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Parmesano"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Pimienta"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Sal"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/HarinadeMaiz"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/SalsaBolognesa -->
+
+    <Class rdf:about="http://www.recetario.com/SalsaBolognesa">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Salsa"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Tomate"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Cebolla"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Res"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Sal"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/Cebolla"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Res"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Sal"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Tomate"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Vino"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Zanahoria"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Vino"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Zanahoria"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/SalsaPesto -->
+
+    <Class rdf:about="http://www.recetario.com/SalsaPesto">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Salsa"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Ajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Almendra"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/AceitedeOliva"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <allValuesFrom>
+                    <Class>
+                        <unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.recetario.com/AceitedeOliva"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Ajo"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Albahaca"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Almendra"/>
+                            <rdf:Description rdf:about="http://www.recetario.com/Parmesano"/>
+                        </unionOf>
+                    </Class>
+                </allValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Albahaca"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Parmesano"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Soya -->
+
+    <Class rdf:about="http://www.recetario.com/Soya">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Tallarin -->
+
+    <Class rdf:about="http://www.recetario.com/Tallarin">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Pasta"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Tallarines -->
+
+    <Class rdf:about="http://www.recetario.com/Tallarines">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Receta"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Tallarin"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/TipoReceta -->
+
+    <Class rdf:about="http://www.recetario.com/TipoReceta">
+        <rdfs:comment rdf:datatype="&xsd;string">Localidad a la que se atribuye una receta</rdfs:comment>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Toffu -->
+
+    <Class rdf:about="http://www.recetario.com/Toffu">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Queso"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Medio"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Tomate -->
+
+    <Class rdf:about="http://www.recetario.com/Tomate">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Tuberculo -->
+
+    <Class rdf:about="http://www.recetario.com/Tuberculo">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Vegetal -->
+
+    <Class rdf:about="http://www.recetario.com/Vegetal">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Ingrediente"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Vegetariana -->
+
+    <Class rdf:about="http://www.recetario.com/Vegetariana">
+        <equivalentClass>
+            <Class>
+                <intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.recetario.com/Receta"/>
+                    <Restriction>
+                        <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                        <someValuesFrom>
+                            <Class>
+                                <intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.recetario.com/Ingrediente"/>
+                                    <Class>
+                                        <complementOf>
+                                            <Class>
+                                                <unionOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="http://www.recetario.com/Embutido"/>
+                                                    <Restriction>
+                                                        <onProperty rdf:resource="http://www.recetario.com/tiene_ingrediente"/>
+                                                        <someValuesFrom rdf:resource="http://www.recetario.com/Carne"/>
+                                                    </Restriction>
+                                                </unionOf>
+                                            </Class>
+                                        </complementOf>
+                                    </Class>
+                                </intersectionOf>
+                            </Class>
+                        </someValuesFrom>
+                    </Restriction>
+                </intersectionOf>
+            </Class>
+        </equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Receta"/>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Vino -->
+
+    <Class rdf:about="http://www.recetario.com/Vino">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Liquido"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Zanahoria -->
+
+    <Class rdf:about="http://www.recetario.com/Zanahoria">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Vegetal"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://www.recetario.com/nivelCalorias"/>
+                <someValuesFrom rdf:resource="http://www.recetario.com/Bajo"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.recetario.com/Ácido -->
+
+    <Class rdf:about="http://www.recetario.com/Ácido">
+        <rdfs:subClassOf rdf:resource="http://www.recetario.com/Sabor"/>
+    </Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Pescado"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pollo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Res"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/LomoSaltado"/>
+            <rdf:Description rdf:about="http://www.recetario.com/MakiSushi"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Salsa"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Tallarines"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Aceite"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Carne"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Cereal"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Condimento"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Embutido"/>
+            <rdf:Description rdf:about="http://www.recetario.com/FrutosSecos"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Harina"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Huevo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Leche"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Liquido"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Mantequilla"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pasta"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Queso"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Tuberculo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Vegetal"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Ajinomoto"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Comino"/>
+            <rdf:Description rdf:about="http://www.recetario.com/NuezMoscada"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pimienta"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Sal"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Almendra"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Mani"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Nuez"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pasas"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Ajo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Albahaca"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Alberjita"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Cebolla"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Girasol"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Lechuga"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Limon"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Maiz"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Olivo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Soya"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Tomate"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Zanahoria"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Marisco"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pescado"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pollo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Res"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/SalsaBlanca"/>
+            <rdf:Description rdf:about="http://www.recetario.com/SalsaBolognesa"/>
+            <rdf:Description rdf:about="http://www.recetario.com/SalsaPesto"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Camote"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Papa"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pituca"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Española"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Italiana"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Japonesa"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Peruana"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Mozzarella"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Parmesano"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Toffu"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/AceitedeGirasol"/>
+            <rdf:Description rdf:about="http://www.recetario.com/AceitedeMaiz"/>
+            <rdf:Description rdf:about="http://www.recetario.com/AceitedeOliva"/>
+            <rdf:Description rdf:about="http://www.recetario.com/AceitedeSoya"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Cebolla"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Lechuga"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Tomate"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Zanahoria"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Alfredo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Bolognesa"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Pesto"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.recetario.com/Amargo"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Dulce"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Picante"/>
+            <rdf:Description rdf:about="http://www.recetario.com/Salado"/>
+        </members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
