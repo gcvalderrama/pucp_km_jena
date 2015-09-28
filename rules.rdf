@@ -1,0 +1,2 @@
+@prefix recetario: <http://www.recetario.com/#>.
+[ AltasCalorias: (?A rdfs:subClassOf Receta) (?A recetario:tiene_ingrediente ?B) (?B recetario:nivelCalorias Alto) -> (?A rdfs:subClassOf recetario:AltasCalorias)]
