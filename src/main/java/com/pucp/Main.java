@@ -86,11 +86,14 @@ public class Main {
 
 
         Resource A = inf.getResource("http://www.w3.org/2002/07/owl#Receta");
+        Resource receta_resource =  inf.getResource("http://www.recetario.com/#Receta");
         Resource D = inf.getResource("http://example.org/D");
 
         Resource Tallarines = inf.getResource("http://www.w3.org/2002/07/owl#Tallarines");
+        Resource Tallarin =  inf.getResource("http://www.w3.org/2002/07/owl#Tallarin");
 
         Resource tiene_ingrediente = inf.getResource("http://www.w3.org/2002/07/owl#tiene_ingrediente");
+        Resource ingrediente_resource = inf.getResource("http://www.w3.org/2002/07/owl#Ingrediente");
 
         Property subClass = inf.getProperty("http://www.w3.org/2000/01/rdf-schema#subClassOf");
         Property p = inf.getProperty("http://www.recetario.com/nivelCalorias");
@@ -98,11 +101,12 @@ public class Main {
         Property type_of = inf.getProperty("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
         Property on_property = inf.getProperty("http://www.w3.org/2002/07/owl#onProperty");
 
+        Property marka =  inf.getProperty("http://www.recetario.com/#IsA");
 
 
 
-        StmtIterator iter = inf.listStatements(Tallarines, null, (RDFNode) null );
-        //StmtIterator iter = inf.listStatements();
+        //StmtIterator iter = inf.listStatements(null, marka, (RDFNode) null );
+        StmtIterator iter = inf.listStatements();
         while (iter.hasNext()) {
             Statement stmt      = iter.nextStatement();
             Resource  subject   = stmt.getSubject();

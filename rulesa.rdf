@@ -3,7 +3,20 @@
 @prefix rdfns: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 
-[rule1: (?receta rdf:subClassOf owl:Receta), (?receta rdfns:type owl:Class) -> (?receta rdfns:type rec:Receta )]
+[Ingredientes:
+(?Ingrediente rdf:subClassOf owl:Ingrediente)
+-> (?Ingrediente rec:EsA rec:Ingrediente )]
+[Ingrediente2:
+(?Ingrediente rec:EsA rec:Ingrediente),
+(?Child rdf:subClassOf ?Ingrediente) ->
+(?Child rec:EsA rec:Ingrediente )]
 
+[calorias:
+(?Ingrediente rec:EsA rec:Ingrediente),
+(?Ingrediente rdf:subClassOf ?Restriccion),
+(?Restriccion owl:onProperty owl:nivelCalorias),
+(?Restriccion owl:someValuesFrom ?Nivel)
+-> (?Ingrediente rec:Calorias ?Nivel )]
 
+[recetas: (?Ingrediente rec:Calorias owl:Bajo) -> (rec:dietetica rdf:subClassOf owl:Receta), (rec:dietetica rec:Opciones ?Ingrediente )]
 
