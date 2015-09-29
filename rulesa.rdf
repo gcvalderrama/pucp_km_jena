@@ -1,11 +1,12 @@
-@prefix rec: <http://www.recetario.com/#>.
+@prefix rec: <http://www.recetario.com/>.
 @prefix rdf: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix rdfns: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 
 [Ingredientes:
-(?Ingrediente rdf:subClassOf owl:Ingrediente)
+(?Ingrediente rdf:subClassOf rec:Ingrediente)
 -> (?Ingrediente rec:EsA rec:Ingrediente )]
+
 [Ingrediente2:
 (?Ingrediente rec:EsA rec:Ingrediente),
 (?Child rdf:subClassOf ?Ingrediente) ->
@@ -14,9 +15,11 @@
 [calorias:
 (?Ingrediente rec:EsA rec:Ingrediente),
 (?Ingrediente rdf:subClassOf ?Restriccion),
-(?Restriccion owl:onProperty owl:nivelCalorias),
+(?Restriccion owl:onProperty rec:nivelCalorias),
 (?Restriccion owl:someValuesFrom ?Nivel)
 -> (?Ingrediente rec:Calorias ?Nivel )]
 
-[recetas: (?Ingrediente rec:Calorias owl:Bajo) -> (rec:dietetica rdf:subClassOf owl:Receta), (rec:dietetica rec:Opciones ?Ingrediente )]
-
+[recetas:
+    (?Ingrediente rec:Calorias rec:Bajo) ->
+    (rec:dietetica rdf:subClassOf rec:Receta),
+    (rec:dietetica rec:Opciones ?Ingrediente )]

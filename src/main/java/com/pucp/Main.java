@@ -64,7 +64,40 @@ public class Main {
         }
     }
 
-    private static  void RecetarioSample()
+    private static void RecetarioSample()
+    {
+        Model instances = ModelFactory.createDefaultModel();
+
+        instances.read("file:receta_base.owl");
+
+        Model rule_model = ModelFactory.createDefaultModel();
+        Resource configuration = rule_model.createResource();
+        configuration.addProperty(ReasonerVocabulary.PROPruleSet, "rulesa.rdf");
+        Reasoner reasoner = GenericRuleReasonerFactory.theInstance().create(configuration);
+        InfModel inf = ModelFactory.createInfModel(reasoner, instances);
+
+
+        Resource dietetica = inf.getResource("http://www.recetario.com/dietetica");
+
+        StmtIterator iter = inf.listStatements(dietetica, null, (RDFNode) null );
+        //StmtIterator iter = inf.listStatements();
+        while (iter.hasNext()) {
+            Statement stmt      = iter.nextStatement();
+            Resource  subject   = stmt.getSubject();
+            Property  predicate = stmt.getPredicate();
+            RDFNode   object    = stmt.getObject();
+
+            System.out.print(subject.toString());
+            System.out.print(" " + predicate.toString() + " ");
+            if (object instanceof Resource) {
+                System.out.print(object.toString());
+            } else {
+                System.out.print(" \"" + object.toString() + "\"");
+            }
+            System.out.println(" .");
+        }
+    }
+    private static  void RecetarioSample_ttl()
     {
         Model instances = ModelFactory.createDefaultModel();
         instances.read("file:recetas_turtle.ttl");
