@@ -2,31 +2,3 @@
 @prefix pre: <http://ajena.hpl.hp.com/prefix#> .
 test:Joseph pre:father test:Mary .
 test:John pre:brother test:Joseph .
-[rule1: (?receta rdf:subClassOf ?master) -> (?receta rdfns:type rec:Menu )]
-[rule1: (?receta rdfns:type owl:Class), (?receta rdf:subClassOf ?master ) -> (?receta rdfns:type rec:NewMenu)]
-
-
-(?receta rdf:subClassOf :Receta)
-
-
-
-tp://www.w3.org/2000/01/rdf-schema#subClassOf http://www.w3.org/2002/07/owl#Ingrediente .
-http://www.w3.org/2002/07/owl#Liquido http://www.w3.org/2000/01/rdf-schema#subClassOf http://www.w3.org/2002/07/owl#Ingrediente .
-http://www.w3.org/2002/07/owl#Harina http://www.w3.org/2000/01/rdf-schema#subClassOf http://www.w3.org/2002/07/owl#Ingrediente .
-http://www.w3.org/2002/07/owl#Vegetal http://www.w3.org/2000/01/rdf-schema#subClassOf http://www.w3.org/2002/07/owl#Ingrediente .
-http://www.w3.org/2002/07/owl#Cereal http://www.w3.org/2000/01/rdf-schema#subClassOf http://www.w3.org/2002/07/owl#Ingrediente .
-
-0ec6dd77960dff458feae16c500bb5cc http://www.w3.org/2002/07/owl#onProperty http://www.w3.org/2002/07/owl#tiene_ingrediente .
-
-http://www.w3.org/2002/07/owl#tiene_ingrediente http://www.w3.org/2000/01/rdf-schema#range http://www.w3.org/2002/07/owl#Ingrediente .
-
-http://www.w3.org/2002/07/owl#tiene_ingrediente http://www.w3.org/2000/01/rdf-schema#domain http://www.w3.org/2002/07/owl#Receta .
-
-()
-
-[recetas: (?receta rdf:subClassOf owl:Receta), (?receta rdfns:type owl:Class) -> (?receta rdfns:type rec:Receta )]
-[calorias: (?receta rdfns:type rec:Receta), ( owl:tiene_ingrediente rdf:domain ?receta) -> (?receta rec:HasIngredientes owl:Ingrediente)]
-
-(?Restriccion rdfns:type owl:Restriction),
-(?Restriccion owl:onProperty owl:nivelCalorias),
-(?Restriccion owl:someValuesFrom ?Nivel)
