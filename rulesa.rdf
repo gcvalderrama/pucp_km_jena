@@ -1,0 +1,9 @@
+@prefix rec: <http://www.recetario.com/#>.
+@prefix rdf: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdfns: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+[rule1: (?receta rdf:subClassOf owl:Receta), (?receta rdfns:type owl:Class) -> (?receta rdfns:type rec:Receta )]
+
+
+
