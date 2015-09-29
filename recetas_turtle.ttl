@@ -1,0 +1,1492 @@
+@prefix : <http://www.w3.org/2002/07/owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.recetario.com/> .
+
+<http://www.recetario.com/> rdf:type :Ontology ;
+                            
+                            rdfs:comment "Ontología de recetas de comida"^^xsd:string .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.recetario.com/de_origen
+
+:de_origen rdf:type :ObjectProperty ;
+           
+           rdfs:domain :Receta ;
+           
+           rdfs:range :TipoReceta .
+
+
+
+###  http://www.recetario.com/es_ingrediente_de
+
+:es_ingrediente_de rdf:type :ObjectProperty ;
+                   
+                   rdfs:domain :Ingrediente ;
+                   
+                   rdfs:range :Receta .
+
+
+
+###  http://www.recetario.com/nivelCalorias
+
+:nivelCalorias rdf:type :ObjectProperty ;
+               
+               rdfs:range :NiveldeCalorias .
+
+
+
+###  http://www.recetario.com/nivelSabor
+
+:nivelSabor rdf:type :ObjectProperty .
+
+
+
+###  http://www.recetario.com/tiene_ingrediente
+
+:tiene_ingrediente rdf:type :ObjectProperty ,
+                            :TransitiveProperty ;
+                   
+                   rdfs:range :Ingrediente ;
+                   
+                   rdfs:domain :Receta ;
+                   
+                   :inverseOf :es_ingrediente_de .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.recetario.com/Aceite
+
+:Aceite rdf:type :Class ;
+        
+        rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/AceitedeGirasol
+
+:AceitedeGirasol rdf:type :Class ;
+                 
+                 rdfs:subClassOf :Aceite ,
+                                 [ rdf:type :Restriction ;
+                                   :onProperty :nivelCalorias ;
+                                   :someValuesFrom :Alto
+                                 ] .
+
+
+
+###  http://www.recetario.com/AceitedeMaiz
+
+:AceitedeMaiz rdf:type :Class ;
+              
+              rdfs:subClassOf :Aceite ,
+                              [ rdf:type :Restriction ;
+                                :onProperty :nivelCalorias ;
+                                :someValuesFrom :Alto
+                              ] .
+
+
+
+###  http://www.recetario.com/AceitedeOliva
+
+:AceitedeOliva rdf:type :Class ;
+               
+               rdfs:subClassOf :Aceite ,
+                               [ rdf:type :Restriction ;
+                                 :onProperty :nivelCalorias ;
+                                 :someValuesFrom :Alto
+                               ] .
+
+
+
+###  http://www.recetario.com/AceitedeSoya
+
+:AceitedeSoya rdf:type :Class ;
+              
+              rdfs:subClassOf :Aceite ,
+                              [ rdf:type :Restriction ;
+                                :onProperty :nivelCalorias ;
+                                :someValuesFrom :Alto
+                              ] .
+
+
+
+###  http://www.recetario.com/Agua
+
+:Agua rdf:type :Class ;
+      
+      rdfs:subClassOf :Liquido ;
+      
+      :disjointWith :Vino .
+
+
+
+###  http://www.recetario.com/Ajinomoto
+
+:Ajinomoto rdf:type :Class ;
+           
+           rdfs:subClassOf :Condimento ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :nivelCalorias ;
+                             :someValuesFrom :Bajo
+                           ] .
+
+
+
+###  http://www.recetario.com/Ajo
+
+:Ajo rdf:type :Class ;
+     
+     rdfs:subClassOf :Vegetal ,
+                     [ rdf:type :Restriction ;
+                       :onProperty :nivelCalorias ;
+                       :someValuesFrom :Bajo
+                     ] .
+
+
+
+###  http://www.recetario.com/Albahaca
+
+:Albahaca rdf:type :Class ;
+          
+          rdfs:subClassOf :Vegetal ,
+                          [ rdf:type :Restriction ;
+                            :onProperty :nivelCalorias ;
+                            :someValuesFrom :Bajo
+                          ] .
+
+
+
+###  http://www.recetario.com/Alberjita
+
+:Alberjita rdf:type :Class ;
+           
+           rdfs:subClassOf :Vegetal ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :nivelCalorias ;
+                             :someValuesFrom :Bajo
+                           ] .
+
+
+
+###  http://www.recetario.com/Alfredo
+
+:Alfredo rdf:type :Class ;
+         
+         rdfs:subClassOf :Tallarines ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :tiene_ingrediente ;
+                           :someValuesFrom :SalsaBlanca
+                         ] ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :de_origen ;
+                           :allValuesFrom :Italiana
+                         ] ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :tiene_ingrediente ;
+                           :allValuesFrom [ rdf:type :Class ;
+                                            :unionOf ( :SalsaBlanca
+                                                       :Tallarin
+                                                     )
+                                          ]
+                         ] .
+
+
+
+###  http://www.recetario.com/Almendra
+
+:Almendra rdf:type :Class ;
+          
+          rdfs:subClassOf :FrutosSecos ,
+                          [ rdf:type :Restriction ;
+                            :onProperty :nivelCalorias ;
+                            :someValuesFrom :Bajo
+                          ] .
+
+
+
+###  http://www.recetario.com/AltasCalorias
+
+:AltasCalorias rdf:type :Class ;
+               
+               rdfs:subClassOf :Receta .
+
+
+
+###  http://www.recetario.com/Alto
+
+:Alto rdf:type :Class ;
+      
+      rdfs:subClassOf :NiveldeCalorias .
+
+
+
+###  http://www.recetario.com/Amargo
+
+:Amargo rdf:type :Class ;
+        
+        rdfs:subClassOf :Sabor .
+
+
+
+###  http://www.recetario.com/Arroz
+
+:Arroz rdf:type :Class ;
+       
+       rdfs:subClassOf :Cereal ;
+       
+       :disjointWith :Avena .
+
+
+
+###  http://www.recetario.com/Avena
+
+:Avena rdf:type :Class ;
+       
+       rdfs:subClassOf :Cereal .
+
+
+
+###  http://www.recetario.com/Bajo
+
+:Bajo rdf:type :Class ;
+      
+      rdfs:subClassOf :NiveldeCalorias .
+
+
+
+###  http://www.recetario.com/Bolognesa
+
+:Bolognesa rdf:type :Class ;
+           
+           rdfs:subClassOf :Tallarines ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :tiene_ingrediente ;
+                             :someValuesFrom :SalsaBolognesa
+                           ] ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :tiene_ingrediente ;
+                             :allValuesFrom [ rdf:type :Class ;
+                                              :unionOf ( :SalsaBolognesa
+                                                         :Tallarin
+                                                       )
+                                            ]
+                           ] ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :de_origen ;
+                             :allValuesFrom :Italiana
+                           ] .
+
+
+
+###  http://www.recetario.com/Camote
+
+:Camote rdf:type :Class ;
+        
+        rdfs:subClassOf :Tuberculo ,
+                        [ rdf:type :Restriction ;
+                          :onProperty :nivelCalorias ;
+                          :someValuesFrom :Bajo
+                        ] .
+
+
+
+###  http://www.recetario.com/Carne
+
+:Carne rdf:type :Class ;
+       
+       rdfs:subClassOf :Ingrediente ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelCalorias ;
+                         :someValuesFrom :Medio
+                       ] .
+
+
+
+###  http://www.recetario.com/Cebolla
+
+:Cebolla rdf:type :Class ;
+         
+         rdfs:subClassOf :Vegetal ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :nivelCalorias ;
+                           :someValuesFrom :Bajo
+                         ] .
+
+
+
+###  http://www.recetario.com/Cereal
+
+:Cereal rdf:type :Class ;
+        
+        rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/Comino
+
+:Comino rdf:type :Class ;
+        
+        rdfs:subClassOf :Condimento ,
+                        [ rdf:type :Restriction ;
+                          :onProperty :nivelCalorias ;
+                          :someValuesFrom :Bajo
+                        ] .
+
+
+
+###  http://www.recetario.com/Condimento
+
+:Condimento rdf:type :Class ;
+            
+            rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/Dulce
+
+:Dulce rdf:type :Class ;
+       
+       rdfs:subClassOf :Sabor .
+
+
+
+###  http://www.recetario.com/Embutido
+
+:Embutido rdf:type :Class ;
+          
+          rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/Española
+
+:Española rdf:type :Class ;
+          
+          rdfs:subClassOf :TipoReceta .
+
+
+
+###  http://www.recetario.com/FrutosSecos
+
+:FrutosSecos rdf:type :Class ;
+             
+             rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/Girasol
+
+:Girasol rdf:type :Class ;
+         
+         rdfs:subClassOf :Vegetal ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :nivelCalorias ;
+                           :someValuesFrom :Bajo
+                         ] .
+
+
+
+###  http://www.recetario.com/Harina
+
+:Harina rdf:type :Class ;
+        
+        rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/HarinadeMaiz
+
+:HarinadeMaiz rdf:type :Class ;
+              
+              rdfs:subClassOf :Harina ,
+                              [ rdf:type :Restriction ;
+                                :onProperty :nivelCalorias ;
+                                :someValuesFrom :Bajo
+                              ] ;
+              
+              :disjointWith :HarinadeSoya .
+
+
+
+###  http://www.recetario.com/HarinadeSoya
+
+:HarinadeSoya rdf:type :Class ;
+              
+              rdfs:subClassOf :Harina ,
+                              [ rdf:type :Restriction ;
+                                :onProperty :nivelCalorias ;
+                                :someValuesFrom :Bajo
+                              ] .
+
+
+
+###  http://www.recetario.com/Huevo
+
+:Huevo rdf:type :Class ;
+       
+       rdfs:subClassOf :Ingrediente ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelSabor ;
+                         :someValuesFrom :Amargo
+                       ] .
+
+
+
+###  http://www.recetario.com/HuevodeCodorniz
+
+:HuevodeCodorniz rdf:type :Class ;
+                 
+                 rdfs:subClassOf :Huevo ,
+                                 [ rdf:type :Restriction ;
+                                   :onProperty :nivelCalorias ;
+                                   :someValuesFrom :Bajo
+                                 ] ;
+                 
+                 :disjointWith :HuevodeGallina .
+
+
+
+###  http://www.recetario.com/HuevodeGallina
+
+:HuevodeGallina rdf:type :Class ;
+                
+                rdfs:subClassOf :Huevo ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :nivelCalorias ;
+                                  :someValuesFrom :Bajo
+                                ] .
+
+
+
+###  http://www.recetario.com/Ingrediente
+
+:Ingrediente rdf:type :Class ;
+             
+             rdfs:comment "Insumo de una receta"^^xsd:string .
+
+
+
+###  http://www.recetario.com/Insípido
+
+:Insípido rdf:type :Class ;
+          
+          rdfs:subClassOf :Sabor .
+
+
+
+###  http://www.recetario.com/Italiana
+
+:Italiana rdf:type :Class ;
+          
+          rdfs:subClassOf :TipoReceta .
+
+
+
+###  http://www.recetario.com/Jamon
+
+:Jamon rdf:type :Class ;
+       
+       rdfs:subClassOf :Embutido ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelCalorias ;
+                         :someValuesFrom :Medio
+                       ] ;
+       
+       :disjointWith :Jamonada .
+
+
+
+###  http://www.recetario.com/Jamonada
+
+:Jamonada rdf:type :Class ;
+          
+          rdfs:subClassOf :Embutido ,
+                          [ rdf:type :Restriction ;
+                            :onProperty :nivelCalorias ;
+                            :someValuesFrom :Medio
+                          ] .
+
+
+
+###  http://www.recetario.com/Japonesa
+
+:Japonesa rdf:type :Class ;
+          
+          rdfs:subClassOf :TipoReceta .
+
+
+
+###  http://www.recetario.com/Lasagna
+
+:Lasagna rdf:type :Class ;
+         
+         rdfs:subClassOf :Pasta ;
+         
+         :disjointWith :Tallarin .
+
+
+
+###  http://www.recetario.com/Leche
+
+:Leche rdf:type :Class ;
+       
+       rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/LechedeSoya
+
+:LechedeSoya rdf:type :Class ;
+             
+             rdfs:subClassOf :Leche ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :nivelCalorias ;
+                               :someValuesFrom :Bajo
+                             ] ;
+             
+             :disjointWith :LechedeVaca .
+
+
+
+###  http://www.recetario.com/LechedeVaca
+
+:LechedeVaca rdf:type :Class ;
+             
+             rdfs:subClassOf :Leche ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :nivelCalorias ;
+                               :someValuesFrom :Bajo
+                             ] .
+
+
+
+###  http://www.recetario.com/Lechuga
+
+:Lechuga rdf:type :Class ;
+         
+         rdfs:subClassOf :Vegetal ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :nivelCalorias ;
+                           :someValuesFrom :Bajo
+                         ] .
+
+
+
+###  http://www.recetario.com/Limon
+
+:Limon rdf:type :Class ;
+       
+       rdfs:subClassOf :Vegetal ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelCalorias ;
+                         :someValuesFrom :Bajo
+                       ] .
+
+
+
+###  http://www.recetario.com/Liquido
+
+:Liquido rdf:type :Class ;
+         
+         rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/LomoSaltado
+
+:LomoSaltado rdf:type :Class ;
+             
+             rdfs:subClassOf :Receta ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :de_origen ;
+                               :someValuesFrom :Peruana
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :allValuesFrom [ rdf:type :Class ;
+                                                :unionOf ( :Cebolla
+                                                           :Papa
+                                                           :Res
+                                                           :Tomate
+                                                         )
+                                              ]
+                             ] ;
+             
+             :disjointWith :MakiSushi ,
+                           :Tallarines .
+
+
+
+###  http://www.recetario.com/Maiz
+
+:Maiz rdf:type :Class ;
+      
+      rdfs:subClassOf :Vegetal ,
+                      [ rdf:type :Restriction ;
+                        :onProperty :nivelCalorias ;
+                        :someValuesFrom :Bajo
+                      ] .
+
+
+
+###  http://www.recetario.com/MakiSushi
+
+:MakiSushi rdf:type :Class ;
+           
+           rdfs:subClassOf :Receta ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :de_origen ;
+                             :allValuesFrom :Japonesa
+                           ] .
+
+
+
+###  http://www.recetario.com/MakiSushiCaliforniaRoll
+
+:MakiSushiCaliforniaRoll rdf:type :Class ;
+                         
+                         rdfs:subClassOf :MakiSushi ,
+                                         [ rdf:type :Restriction ;
+                                           :onProperty :tiene_ingrediente ;
+                                           :someValuesFrom :Zanahoria
+                                         ] ,
+                                         [ rdf:type :Restriction ;
+                                           :onProperty :tiene_ingrediente ;
+                                           :allValuesFrom [ rdf:type :Class ;
+                                                            :unionOf ( :Arroz
+                                                                       :Nori
+                                                                       :Pescado
+                                                                       :QuesoCrema
+                                                                       :Zanahoria
+                                                                     )
+                                                          ]
+                                         ] ,
+                                         [ rdf:type :Restriction ;
+                                           :onProperty :tiene_ingrediente ;
+                                           :someValuesFrom :Arroz
+                                         ] ,
+                                         [ rdf:type :Restriction ;
+                                           :onProperty :tiene_ingrediente ;
+                                           :someValuesFrom :Pescado
+                                         ] ,
+                                         [ rdf:type :Restriction ;
+                                           :onProperty :tiene_ingrediente ;
+                                           :someValuesFrom :QuesoCrema
+                                         ] ,
+                                         [ rdf:type :Restriction ;
+                                           :onProperty :tiene_ingrediente ;
+                                           :someValuesFrom :Nori
+                                         ] .
+
+
+
+###  http://www.recetario.com/MakiSushiPalta
+
+:MakiSushiPalta rdf:type :Class ;
+                
+                rdfs:subClassOf :MakiSushi ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Nori
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Zanahoria
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Palta
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Arroz
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :allValuesFrom [ rdf:type :Class ;
+                                                   :unionOf ( :Arroz
+                                                              :Nori
+                                                              :Palta
+                                                              :Zanahoria
+                                                            )
+                                                 ]
+                                ] .
+
+
+
+###  http://www.recetario.com/Mani
+
+:Mani rdf:type :Class ;
+      
+      rdfs:subClassOf :FrutosSecos ,
+                      [ rdf:type :Restriction ;
+                        :onProperty :nivelCalorias ;
+                        :someValuesFrom :Alto
+                      ] .
+
+
+
+###  http://www.recetario.com/Mantequilla
+
+:Mantequilla rdf:type :Class ;
+             
+             rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/MantequilladeLecheVaca
+
+:MantequilladeLecheVaca rdf:type :Class ;
+                        
+                        rdfs:subClassOf :Mantequilla ,
+                                        [ rdf:type :Restriction ;
+                                          :onProperty :nivelCalorias ;
+                                          :someValuesFrom :Alto
+                                        ] ;
+                        
+                        :disjointWith :MantequilladeManí .
+
+
+
+###  http://www.recetario.com/MantequilladeManí
+
+:MantequilladeManí rdf:type :Class ;
+                   
+                   rdfs:subClassOf :Mantequilla ,
+                                   [ rdf:type :Restriction ;
+                                     :onProperty :nivelCalorias ;
+                                     :someValuesFrom :Alto
+                                   ] .
+
+
+
+###  http://www.recetario.com/Marisco
+
+:Marisco rdf:type :Class ;
+         
+         rdfs:subClassOf :Carne ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :nivelCalorias ;
+                           :someValuesFrom :Medio
+                         ] .
+
+
+
+###  http://www.recetario.com/Medio
+
+:Medio rdf:type :Class ;
+       
+       rdfs:subClassOf :NiveldeCalorias .
+
+
+
+###  http://www.recetario.com/Mozzarella
+
+:Mozzarella rdf:type :Class ;
+            
+            rdfs:subClassOf :Queso ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :nivelCalorias ;
+                              :someValuesFrom :Medio
+                            ] .
+
+
+
+###  http://www.recetario.com/Nivel
+
+:Nivel rdf:type :Class .
+
+
+
+###  http://www.recetario.com/NiveldeCalorias
+
+:NiveldeCalorias rdf:type :Class ;
+                 
+                 :equivalentClass [ rdf:type :Class ;
+                                    :unionOf ( :Alto
+                                               :Bajo
+                                               :Medio
+                                             )
+                                  ] ;
+                 
+                 rdfs:subClassOf :Nivel .
+
+
+
+###  http://www.recetario.com/NiveldeSabor
+
+:NiveldeSabor rdf:type :Class ;
+              
+              :equivalentClass [ rdf:type :Class ;
+                                 :unionOf ( :Alto
+                                            :Bajo
+                                            :Medio
+                                          )
+                               ] ;
+              
+              rdfs:subClassOf :Nivel .
+
+
+
+###  http://www.recetario.com/Nori
+
+:Nori rdf:type :Class ;
+      
+      rdfs:subClassOf :Vegetal .
+
+
+
+###  http://www.recetario.com/Nuez
+
+:Nuez rdf:type :Class ;
+      
+      rdfs:subClassOf :FrutosSecos ,
+                      [ rdf:type :Restriction ;
+                        :onProperty :nivelCalorias ;
+                        :someValuesFrom :Bajo
+                      ] .
+
+
+
+###  http://www.recetario.com/NuezMoscada
+
+:NuezMoscada rdf:type :Class ;
+             
+             rdfs:subClassOf :Condimento ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :nivelCalorias ;
+                               :someValuesFrom :Bajo
+                             ] .
+
+
+
+###  http://www.recetario.com/Olivo
+
+:Olivo rdf:type :Class ;
+       
+       rdfs:subClassOf :Vegetal ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelCalorias ;
+                         :someValuesFrom :Bajo
+                       ] .
+
+
+
+###  http://www.recetario.com/Palta
+
+:Palta rdf:type :Class ;
+       
+       rdfs:subClassOf :Vegetal .
+
+
+
+###  http://www.recetario.com/Papa
+
+:Papa rdf:type :Class ;
+      
+      rdfs:subClassOf :Tuberculo ,
+                      [ rdf:type :Restriction ;
+                        :onProperty :nivelCalorias ;
+                        :someValuesFrom :Bajo
+                      ] .
+
+
+
+###  http://www.recetario.com/Parmesano
+
+:Parmesano rdf:type :Class ;
+           
+           rdfs:subClassOf :Queso ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :nivelCalorias ;
+                             :someValuesFrom :Medio
+                           ] .
+
+
+
+###  http://www.recetario.com/Pasas
+
+:Pasas rdf:type :Class ;
+       
+       rdfs:subClassOf :FrutosSecos ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelCalorias ;
+                         :someValuesFrom :Medio
+                       ] .
+
+
+
+###  http://www.recetario.com/Pasta
+
+:Pasta rdf:type :Class ;
+       
+       rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/Peruana
+
+:Peruana rdf:type :Class ;
+         
+         rdfs:subClassOf :TipoReceta .
+
+
+
+###  http://www.recetario.com/Pescado
+
+:Pescado rdf:type :Class ;
+         
+         rdfs:subClassOf :Carne ,
+                         [ rdf:type :Restriction ;
+                           :onProperty :nivelCalorias ;
+                           :someValuesFrom :Medio
+                         ] .
+
+
+
+###  http://www.recetario.com/Pesto
+
+:Pesto rdf:type :Class ;
+       
+       rdfs:subClassOf :Tallarines ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :tiene_ingrediente ;
+                         :allValuesFrom [ rdf:type :Class ;
+                                          :unionOf ( :SalsaPesto
+                                                     :Tallarin
+                                                   )
+                                        ]
+                       ] ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :tiene_ingrediente ;
+                         :someValuesFrom :SalsaPesto
+                       ] ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :de_origen ;
+                         :allValuesFrom :Italiana
+                       ] .
+
+
+
+###  http://www.recetario.com/Picante
+
+:Picante rdf:type :Class ;
+         
+         rdfs:subClassOf :Sabor .
+
+
+
+###  http://www.recetario.com/Pimienta
+
+:Pimienta rdf:type :Class ;
+          
+          rdfs:subClassOf :Condimento ,
+                          [ rdf:type :Restriction ;
+                            :onProperty :nivelCalorias ;
+                            :someValuesFrom :Bajo
+                          ] .
+
+
+
+###  http://www.recetario.com/Pituca
+
+:Pituca rdf:type :Class ;
+        
+        rdfs:subClassOf :Tuberculo .
+
+
+
+###  http://www.recetario.com/Pollo
+
+:Pollo rdf:type :Class ;
+       
+       rdfs:subClassOf :Carne ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelCalorias ;
+                         :someValuesFrom :Medio
+                       ] ;
+       
+       :disjointWith :Res .
+
+
+
+###  http://www.recetario.com/Queso
+
+:Queso rdf:type :Class ;
+       
+       rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/QuesoCrema
+
+:QuesoCrema rdf:type :Class ;
+            
+            rdfs:subClassOf :Queso .
+
+
+
+###  http://www.recetario.com/Receta
+
+:Receta rdf:type :Class ;
+        
+        rdfs:subClassOf [ rdf:type :Restriction ;
+                          :onProperty :tiene_ingrediente ;
+                          :someValuesFrom :Ingrediente
+                        ] ;
+        
+        rdfs:comment "Es el plato que puede ser preparado con un conjunto de ingredientes"^^xsd:string .
+
+
+
+###  http://www.recetario.com/Res
+
+:Res rdf:type :Class ;
+     
+     rdfs:subClassOf :Carne ,
+                     [ rdf:type :Restriction ;
+                       :onProperty :nivelCalorias ;
+                       :someValuesFrom :Medio
+                     ] .
+
+
+
+###  http://www.recetario.com/Sabor
+
+:Sabor rdf:type :Class ;
+       
+       rdfs:comment "El sabor que tiene un tipo de ingrediente.  Los ingredientes tienen por lo menos 1 sabor."^^xsd:string .
+
+
+
+###  http://www.recetario.com/Sal
+
+:Sal rdf:type :Class ;
+     
+     rdfs:subClassOf :Condimento ,
+                     [ rdf:type :Restriction ;
+                       :onProperty :nivelCalorias ;
+                       :someValuesFrom :Bajo
+                     ] .
+
+
+
+###  http://www.recetario.com/Salado
+
+:Salado rdf:type :Class ;
+        
+        rdfs:subClassOf :Sabor .
+
+
+
+###  http://www.recetario.com/Salsa
+
+:Salsa rdf:type :Class ;
+       
+       rdfs:subClassOf :Receta .
+
+
+
+###  http://www.recetario.com/SalsaBlanca
+
+:SalsaBlanca rdf:type :Class ;
+             
+             rdfs:subClassOf :Salsa ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :someValuesFrom :LechedeVaca
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :someValuesFrom :Pimienta
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :someValuesFrom :Sal
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :someValuesFrom :Jamon
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :allValuesFrom [ rdf:type :Class ;
+                                                :unionOf ( :HarinadeMaiz
+                                                           :Jamon
+                                                           :LechedeVaca
+                                                           :MantequilladeLecheVaca
+                                                           :Parmesano
+                                                           :Pimienta
+                                                           :Sal
+                                                         )
+                                              ]
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :someValuesFrom :HarinadeMaiz
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :someValuesFrom :Parmesano
+                             ] ,
+                             [ rdf:type :Restriction ;
+                               :onProperty :tiene_ingrediente ;
+                               :someValuesFrom :MantequilladeLecheVaca
+                             ] .
+
+
+
+###  http://www.recetario.com/SalsaBolognesa
+
+:SalsaBolognesa rdf:type :Class ;
+                
+                rdfs:subClassOf :Salsa ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Res
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Tomate
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Sal
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Cebolla
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Zanahoria
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :allValuesFrom [ rdf:type :Class ;
+                                                   :unionOf ( :Cebolla
+                                                              :Res
+                                                              :Sal
+                                                              :Tomate
+                                                              :Vino
+                                                              :Zanahoria
+                                                            )
+                                                 ]
+                                ] ,
+                                [ rdf:type :Restriction ;
+                                  :onProperty :tiene_ingrediente ;
+                                  :someValuesFrom :Vino
+                                ] .
+
+
+
+###  http://www.recetario.com/SalsaPesto
+
+:SalsaPesto rdf:type :Class ;
+            
+            rdfs:subClassOf :Salsa ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :tiene_ingrediente ;
+                              :someValuesFrom :Albahaca
+                            ] ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :tiene_ingrediente ;
+                              :someValuesFrom :AceitedeOliva
+                            ] ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :tiene_ingrediente ;
+                              :someValuesFrom :Parmesano
+                            ] ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :tiene_ingrediente ;
+                              :someValuesFrom :Almendra
+                            ] ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :tiene_ingrediente ;
+                              :someValuesFrom :Ajo
+                            ] ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :tiene_ingrediente ;
+                              :allValuesFrom [ rdf:type :Class ;
+                                               :unionOf ( :AceitedeOliva
+                                                          :Ajo
+                                                          :Albahaca
+                                                          :Almendra
+                                                          :Parmesano
+                                                        )
+                                             ]
+                            ] .
+
+
+
+###  http://www.recetario.com/Soya
+
+:Soya rdf:type :Class ;
+      
+      rdfs:subClassOf :Vegetal ,
+                      [ rdf:type :Restriction ;
+                        :onProperty :nivelCalorias ;
+                        :someValuesFrom :Bajo
+                      ] .
+
+
+
+###  http://www.recetario.com/Tallarin
+
+:Tallarin rdf:type :Class ;
+          
+          rdfs:subClassOf :Pasta ,
+                          [ rdf:type :Restriction ;
+                            :onProperty :nivelCalorias ;
+                            :someValuesFrom :Medio
+                          ] .
+
+
+
+###  http://www.recetario.com/Tallarines
+
+:Tallarines rdf:type :Class ;
+            
+            rdfs:subClassOf :Receta ,
+                            [ rdf:type :Restriction ;
+                              :onProperty :tiene_ingrediente ;
+                              :someValuesFrom :Tallarin
+                            ] .
+
+
+
+###  http://www.recetario.com/TipoReceta
+
+:TipoReceta rdf:type :Class ;
+            
+            rdfs:comment "Localidad a la que se atribuye una receta"^^xsd:string .
+
+
+
+###  http://www.recetario.com/Toffu
+
+:Toffu rdf:type :Class ;
+       
+       rdfs:subClassOf :Queso ,
+                       [ rdf:type :Restriction ;
+                         :onProperty :nivelCalorias ;
+                         :someValuesFrom :Medio
+                       ] .
+
+
+
+###  http://www.recetario.com/Tomate
+
+:Tomate rdf:type :Class ;
+        
+        rdfs:subClassOf :Vegetal ,
+                        [ rdf:type :Restriction ;
+                          :onProperty :nivelCalorias ;
+                          :someValuesFrom :Bajo
+                        ] .
+
+
+
+###  http://www.recetario.com/Tuberculo
+
+:Tuberculo rdf:type :Class ;
+           
+           rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/Vegetal
+
+:Vegetal rdf:type :Class ;
+         
+         rdfs:subClassOf :Ingrediente .
+
+
+
+###  http://www.recetario.com/Vino
+
+:Vino rdf:type :Class ;
+      
+      rdfs:subClassOf :Liquido ,
+                      [ rdf:type :Restriction ;
+                        :onProperty :nivelCalorias ;
+                        :someValuesFrom :Bajo
+                      ] .
+
+
+
+###  http://www.recetario.com/Zanahoria
+
+:Zanahoria rdf:type :Class ;
+           
+           rdfs:subClassOf :Vegetal ,
+                           [ rdf:type :Restriction ;
+                             :onProperty :nivelCalorias ;
+                             :someValuesFrom :Bajo
+                           ] .
+
+
+
+###  http://www.recetario.com/Ácido
+
+:Ácido rdf:type :Class ;
+       
+       rdfs:subClassOf :Sabor .
+
+
+
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Española
+             :Italiana
+             :Japonesa
+             :Peruana
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :SalsaBlanca
+             :SalsaBolognesa
+             :SalsaPesto
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Mozzarella
+             :Parmesano
+             :Toffu
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Almendra
+             :Mani
+             :Nuez
+             :Pasas
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Camote
+             :Papa
+             :Pituca
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Ajo
+             :Albahaca
+             :Alberjita
+             :Cebolla
+             :Girasol
+             :Lechuga
+             :Limon
+             :Maiz
+             :Olivo
+             :Soya
+             :Tomate
+             :Zanahoria
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Amargo
+             :Dulce
+             :Picante
+             :Salado
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Aceite
+             :Carne
+             :Cereal
+             :Condimento
+             :Embutido
+             :FrutosSecos
+             :Harina
+             :Huevo
+             :Leche
+             :Liquido
+             :Mantequilla
+             :Pasta
+             :Queso
+             :Tuberculo
+             :Vegetal
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Cebolla
+             :Lechuga
+             :Tomate
+             :Zanahoria
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Alfredo
+             :Bolognesa
+             :Pesto
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :AceitedeGirasol
+             :AceitedeMaiz
+             :AceitedeOliva
+             :AceitedeSoya
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Ajinomoto
+             :Comino
+             :NuezMoscada
+             :Pimienta
+             :Sal
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Marisco
+             :Pescado
+             :Pollo
+             :Res
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :Pescado
+             :Pollo
+             :Res
+           )
+] .
+[ rdf:type :AllDisjointClasses ;
+  :members ( :LomoSaltado
+             :MakiSushi
+             :Salsa
+             :Tallarines
+           )
+] .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+

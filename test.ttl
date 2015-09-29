@@ -1,0 +1,9 @@
+@prefix test: <http://oanaureche.com/#> .
+@prefix pre: <http://ajena.hpl.hp.com/prefix#> .
+test:Joseph pre:father test:Mary .
+test:John pre:brother test:Joseph .
+[rule1: (?receta rdf:subClassOf ?master) -> (?receta rdfns:type rec:Menu )]
+[rule1: (?receta rdfns:type owl:Class), (?receta rdf:subClassOf ?master ) -> (?receta rdfns:type rec:NewMenu)]
+
+
+(?receta rdf:subClassOf :Receta)
