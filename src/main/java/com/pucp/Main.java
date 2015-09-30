@@ -80,6 +80,8 @@ public class Main {
         Resource dietetica = inf.getResource("http://www.recetario.com/dietetica");
 
         StmtIterator iter = inf.listStatements(dietetica, null, (RDFNode) null );
+
+
         //StmtIterator iter = inf.listStatements();
         while (iter.hasNext()) {
             Statement stmt      = iter.nextStatement();
@@ -131,117 +133,73 @@ public class Main {
         }
     }
 
-    private static void Recetario()
+    private static void RecetasSparkQL ()
     {
-        // write your code here
+        Model instances = ModelFactory.createDefaultModel();
 
-        //OntModel ont_model =  ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM );
-        Model raw_model = FileManager.get().loadModel("receta_base.owl");
+        instances.read("file:receta_base.owl");
 
-        //PrintModel(raw_model);
-
-        InfModel inf_model =  ModelFactory.createRDFSModel(raw_model);
-        //  FileManager.get().readModel( ont_model, inputFileName );
-
-
-        ValidityReport validaty = inf_model.validate();
-        if (!validaty.isValid())
-        {
-            System.out.println("Conflicts");
-            for (Iterator i = validaty.getReports(); i.hasNext(); ) {
-                System.out.println(" - " + i.next());
-            }
-        }
-
-
-        Model rule_model = ModelFactory.createDefaultModel();
-        Resource configuration = rule_model.createResource();
-        List<Rule> rules =  Rule.rulesFromURL("rulesa.rdf");
-        //String rules = "[rule1: (?a eg:p ?b) (?b eg:p ?c) -> (?a eg:p ?c)]";
-        Reasoner reasoner = new GenericRuleReasoner(rules);
-
-
-
-        reasoner.setDerivationLogging(true);
-        InfModel inf = ModelFactory.createInfModel(reasoner, raw_model);
-
-        PrintModel(inf.getDeductionsModel());
-
-        /*
-        PrintWriter out = new PrintWriter(System.out);
-        Resource receta = inf.getResource("http://www.recetario.com/AltasCalorias");
-
-        for (StmtIterator i = inf.listStatements( receta, null, (Resource)null) ; i.hasNext(); ) {
-            Statement s = i.nextStatement();
-            System.out.println("Statement is " + s);
-            for (Iterator id = inf.getDerivation(s); id.hasNext(); ) {
-                Derivation deriv = (Derivation) id.next();
-                deriv.printTrace(out, true);
-            }
-        }
-        out.flush();
-
-        */
-        /*
-        Resource resource =  inf_model.getResource("http://www.recetario.com/AltasCalorias");
-        PrintResource(resource);
-
-        Model rule_model = ModelFactory.createDefaultModel();
-        Resource configuration = rule_model.createResource();
-        configuration.addProperty(ReasonerVocabulary.PROPruleSet, "rulesa.rdf");
-        Reasoner reasoner = GenericRuleReasonerFactory.theInstance().create(configuration);
-        InfModel reasoner_model = ModelFactory.createInfModel(reasoner, inf_model);
-
-
-        Model deduction = reasoner_model.getDeductionsModel();
-        PrintModel(deduction);
-        */
-
-
-        /*
-        for (StmtIterator i = reasoner_model.listStatements((Resource)null , null,resource); i.hasNext(); ) {
-            Statement stmt = i.nextStatement();
-            System.out.println(" rs -- " + PrintUtil.print(stmt));
-        }
-        */
-      /*
-        PrintUtil.registerPrefix("recetario", "http://www.recetario.com/#");
-        */
-        //https://jena.apache.org/tutorials/rdf_api.html
-        //https://github.com/gcvalderrama/pucp_km_jena/blob/master/src/main/java/com/pucp/Main.java
-        //https://jena.apache.org/tutorials/rdf_api.html
-        //  Model model = ModelFactory.createDefaultModel();
-        // InputStream in = FileManager.get().open( inputFileName );
-        //  if (in == null) {
-        //      throw new IllegalArgumentException( "File: " + inputFileName + " not found");
-        //  }
-        // read the RDF/XML file
-        // model.read(new InputStreamReader(in), "");
-        // write it to standard out
-        //ont_model.write(System.out);
-        /*
-        String prefix = "prefix recetas: <" + RecetarioXS + ">\n" +
+        String prefix = "prefix recetario: <" + RecetarioXS + ">\n" +
                 "prefix rdfs: <" + RDFS.getURI() + ">\n" +
-                "prefix owl: <" + OWL.getURI() + ">\n";
+                "prefix owl: <" + OWL.getURI() + ">\n" +
+                "prefix rdf: <" + RDF.getURI() + ">\n";
 
         System.out.println(prefix);
+
         String q =  prefix +
                 "select ?result where { ?result rdfs:subClassOf ?restriccion . \n" +
-                " ?restriccion owl:onProperty recetas:tiene_ingrediente ; owl:someValuesFrom recetas:Tallarin }" ;
+                " ?restriccion owl:onProperty recetario:tiene_ingrediente ; owl:someValuesFrom recetario:Tallarin }" ;
 
-        Query query = QueryFactory.create(q);
-        QueryExecution qexec = QueryExecutionFactory.create(query, ont_model);
+        //altas calorias
+        String q1 = prefix + "select DISTINCT ?receta where { " +
+                " ?receta rdfs:subClassOf ?class . \n" +
+                " ?class owl:onProperty recetario:tiene_ingrediente . \n" +
+                " ?class owl:allValuesFrom ?allValues .\n" +
+                " ?allValues owl:unionOf ?union . \n" +
+                " ?union rdf:rest* [ rdf:first ?ingrediente ] . \n" +
+                " ?ingrediente rdfs:subClassOf ?class2 .\n" +
+                " ?class2 owl:onProperty recetario:nivelCalorias . \n" +
+                " ?class2 owl:someValuesFrom ?nivel .\n" +
+                " FILTER (strEnds(str(?nivel), \"Alto\")) }";
+
+        //recetasa con carne o embutidos
+        String where1 = "{ ?receta rdfs:subClassOf ?class . \n" +
+                " ?class owl:onProperty recetario:tiene_ingrediente . \n" +
+                " ?class owl:allValuesFrom ?allValues .\n" +
+                " ?allValues owl:unionOf ?union . \n" +
+                " ?union rdf:rest* [ rdf:first ?ingrediente ] . \n" +
+                " ?ingrediente rdfs:subClassOf ?tipoIngrediente . \n" +
+                " ?tipoIngrediente rdfs:subClassOf recetario:Ingrediente . \n" +
+                " FILTER (strEnds(str(?tipoIngrediente), \"Carne\") || strEnds(str(?tipoIngrediente), \"Embutido\")) . \n }";
+
+        String where2 = "{ ?receta rdfs:subClassOf ?class . \n" +
+                " ?class owl:onProperty recetario:tiene_ingrediente . \n" +
+                " ?class owl:allValuesFrom ?allValues .\n" +
+                " ?allValues owl:unionOf ?union . \n" +
+                " ?union rdf:rest* [ rdf:first ?subReceta ] . \n" +
+                " ?subReceta rdfs:subClassOf ?esReceta . \n" +
+                " ?esReceta rdfs:subClassOf recetario:Receta . \n" +
+                " ?subReceta rdfs:subClassOf ?class2 . \n " +
+                " ?class2 owl:onProperty recetario:tiene_ingrediente . \n " +
+                " ?class2 owl:someValuesFrom ?ingrediente . \n " +
+                " ?ingrediente rdfs:subClassOf ?tipoIngrediente . \n" +
+                " ?tipoIngrediente rdfs:subClassOf recetario:Ingrediente . \n" +
+                " FILTER (strEnds(str(?tipoIngrediente), \"Carne\") || strEnds(str(?tipoIngrediente), \"Embutido\")) . \n }";
+
+        String q3 = prefix + "select ?receta where { " + where1 + " UNION " + where2 +
+                " } GROUP BY ?receta \n " +
+                " HAVING (count(?ingrediente) > 0) ";
+        Query query = QueryFactory.create(q3);
+        QueryExecution qexec = QueryExecutionFactory.create(query, instances);
         try {
             ResultSet results = qexec.execSelect();
-            ResultSetFormatter.out( results, ont_model );
+            ResultSetFormatter.out( results, instances );
         }
         finally {
             qexec.close();
         }
-        */
-
     }
     public static void main(String[] args) {
-        RecetarioSample();
+        RecetasSparkQL();
     }
 }
